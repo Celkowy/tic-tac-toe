@@ -3,11 +3,23 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.show-result {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 64px;
+}
+
 .clear {
   position: absolute;
   top: 5%;
   right: 5%;
-  font-size: 34px;
+  font-size: 48px;
   cursor: pointer;
 }
 
@@ -52,15 +64,33 @@ i.cross.show {
   display: block;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  padding: 5px 0;
+}
+
 @media (max-width: 1024px) {
   .wrapper {
     height: 66vw;
     width: 66vw;
   }
 
+  i.circle,
+  i.cross {
+    font-size: 64px;
+  }
+
   .block {
     height: 22vw;
     width: 22vw;
+  }
+
+  footer {
+    font-size: 9px;
   }
 }
 
