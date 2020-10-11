@@ -28,8 +28,9 @@ else{
   randomTable.splice(randomTable.indexOf(random), 1);
   circles[random].classList.add('show');
 }
-      
+
 i++;
+
     })
   })
 
