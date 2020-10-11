@@ -5,6 +5,7 @@ const crosses = [...document.querySelectorAll('.cross')];
 const clear = document.querySelector('.clear');
 const showResult = document.querySelector('.show-result')
 let i = 0;
+let counter = 0;
 
 const randomNumber = () =>{
   return randomTable[Math.random() * randomTable.length | 0];
@@ -35,54 +36,67 @@ crosses.forEach(cross =>{
 })
 
 setTimeout(() =>{
-  winner();
+  result();
 },1500)
+
+counter = 0;
 }
 
-const winner = (content) =>{
+const result = (content, color) =>{
   showResult.textContent = content;
-  showResult.style.color = "lightgreen"
+  showResult.style.color = color;
 }
+
+// const highlightOutcome = (b1, b2, b2, color) =>{
+
+// }
 
 const userWin = () =>{
   if(blocks[0].className[6] && blocks[1].className[6] && blocks[2].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
     i++;
   }
   else if (blocks[3].className[6] && blocks[4].className[6] && blocks[5].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
     i++;
   }
   else if (blocks[6].className[6] && blocks[7].className[6] && blocks[8].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
     i++;
   }
   else if (blocks[0].className[6] && blocks[3].className[6] && blocks[6].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
     i++;
   }
   else if (blocks[1].className[6] && blocks[4].className[6] && blocks[7].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
     i++;
   }
   else if (blocks[2].className[6] && blocks[5].className[6] && blocks[8].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
     i++;
   }
   else if (blocks[0].className[6] && blocks[4].className[6] && blocks[8].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
     i++;
   }
   else if (blocks[6].className[6] && blocks[4].className[6] && blocks[2].className[6]){
-    winner('WIN');
+    result('WIN', 'lightgreen');
     clearBoard();
+    i++;
+  }
+  else if (counter == 5){
+    result('DRAW', '#333');
+    setTimeout(() =>{
+      clearBoard();
+    },1500)
     i++;
   }
 }
@@ -93,13 +107,13 @@ const userWin = () =>{
       block.style.pointerEvents = "none";
       crosses[index].classList.add('show');
       block.className += " 1";
+      counter++;
       userWin();
       if(i == 0){
         ai();
       }
       i=0;
     })
-
   })
 
 
