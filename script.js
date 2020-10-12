@@ -6,6 +6,7 @@ const clear = document.querySelector('.clear');
 const showResult = document.querySelector('.show-result')
 let i = 0;
 let counter = 0;
+let doNotShowLastMove = 0;
 
 const randomNumber = () =>{
   return randomTable[Math.random() * randomTable.length | 0];
@@ -14,7 +15,7 @@ const randomNumber = () =>{
 const delayOnFading = (callback) =>{
   setTimeout(() =>{
     callback();
-  } , 1250)
+  } , 1500)
 }
 
 const ai = () =>{
@@ -22,6 +23,7 @@ const ai = () =>{
   blocks[random].style.pointerEvents = "none";
   randomTable.splice(randomTable.indexOf(random), 1);
   circles[random].classList.add('show');
+  blocks[random].className += ' 2';
 }
 
 const displayResult = (content, color) =>{
@@ -31,7 +33,7 @@ const displayResult = (content, color) =>{
 
 const clearBoard = () =>{
 
-  randomTable = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+randomTable = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 blocks.forEach((block) =>{
   block.style.pointerEvents = "auto";
@@ -50,9 +52,8 @@ delayOnFading(displayResult);
 
 counter = 0;
 i = 0;
+doNotShowLastMove = 0;
 }
-
-
 
 const disableAllBlocks = () =>{
   blocks.forEach(block =>{
@@ -60,104 +61,121 @@ const disableAllBlocks = () =>{
   })
 }
 
-// const highlightOutcome = (b1, b2, b2, color) =>{
-
-
-
-// }
-
 const userWin = () =>{
-  if(blocks[0].className[6] && blocks[1].className[6] && blocks[2].className[6]){
+  if(blocks[0].className[6] == 1 && blocks[1].className[6] == 1 && blocks[2].className[6] == 1){
     displayResult('WIN', 'lightgreen');
     delayOnFading(clearBoard);
     disableAllBlocks();
+    doNotShowLastMove = 1;
   }
-  else if (blocks[3].className[6] && blocks[4].className[6] && blocks[5].className[6]){
+  else if (blocks[3].className[6] == 1 && blocks[4].className[6] == 1 && blocks[5].className[6] == 1){
     displayResult('WIN', 'lightgreen');
     delayOnFading(clearBoard);
     disableAllBlocks();
+    doNotShowLastMove = 1;
   }
-  else if (blocks[6].className[6] && blocks[7].className[6] && blocks[8].className[6]){
-    displayResult('WIN', 'lightgreen');
-     delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[0].className[6] && blocks[3].className[6] && blocks[6].className[6]){
+  else if (blocks[6].className[6] == 1 && blocks[7].className[6] == 1 && blocks[8].className[6] == 1){
     displayResult('WIN', 'lightgreen');
     delayOnFading(clearBoard);
     disableAllBlocks();
+    doNotShowLastMove = 1;
   }
-  else if (blocks[1].className[6] && blocks[4].className[6] && blocks[7].className[6]){
+  else if (blocks[0].className[6] == 1 && blocks[3].className[6] == 1 && blocks[6].className[6] == 1){
     displayResult('WIN', 'lightgreen');
     delayOnFading(clearBoard);
     disableAllBlocks();
+    doNotShowLastMove = 1;
   }
-  else if (blocks[2].className[6] && blocks[5].className[6] && blocks[8].className[6]){
+  else if (blocks[1].className[6] == 1 && blocks[4].className[6] == 1 && blocks[7].className[6] == 1){
     displayResult('WIN', 'lightgreen');
     delayOnFading(clearBoard);
     disableAllBlocks();
+    doNotShowLastMove = 1;
   }
-  else if (blocks[0].className[6] && blocks[4].className[6] && blocks[8].className[6]){
+  else if (blocks[2].className[6] == 1 && blocks[5].className[6] == 1 && blocks[8].className[6] == 1){
     displayResult('WIN', 'lightgreen');
     delayOnFading(clearBoard);
     disableAllBlocks();
+    doNotShowLastMove = 1;
   }
-  else if (blocks[6].className[6] && blocks[4].className[6] && blocks[2].className[6]){
+  else if (blocks[0].className[6] == 1 && blocks[4].className[6] == 1 && blocks[8].className[6] == 1){
+    displayResult('WIN', 'lightgreen');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[6].className[6] == 1 && blocks[4].className[6] == 1 && blocks[2].className[6] == 1){
     displayResult('WIN', 'lightgreen');
       delayOnFading(clearBoard);
     disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if(blocks[0].className[6] == 2 && blocks[1].className[6] == 2 && blocks[2].className[6] == 2){
+    displayResult('WIN', 'lightgreen');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[0].className[6] == 2 && blocks[3].className[6] == 2 && blocks[6].className[6] == 2){
+    displayResult('LOSS', 'red');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[3].className[6] == 2 && blocks[4].className[6] == 2 && blocks[5].className[6] == 2){
+    displayResult('LOSS', 'red');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[6].className[6] == 2 && blocks[7].className[6] == 2 && blocks[8].className[6] == 2){
+    displayResult('LOSS', 'red');
+     delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[0].className[6] == 2 && blocks[3].className[6] == 2 && blocks[6].className[6] == 2){
+    displayResult('LOSS', 'red');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[1].className[6] == 2 && blocks[4].className[6] == 2 && blocks[7].className[6] == 2){
+    displayResult('LOSS', 'red');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[2].className[6] == 2 && blocks[5].className[6] == 2 && blocks[8].className[6] == 2){
+    displayResult('LOSS', 'red');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[0].className[6] == 2 && blocks[4].className[6] == 2 && blocks[8].className[6] == 2){
+    displayResult('LOSS', 'red');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
+  }
+  else if (blocks[6].className[6] == 2 && blocks[4].className[6] == 2 && blocks[2].className[6] == 2){
+    displayResult('LOSS', 'red');
+    delayOnFading(clearBoard);
+    disableAllBlocks();
+    doNotShowLastMove = 1;
   }
   else if (counter == 5){
     displayResult('DRAW', '#666');
     delayOnFading(clearBoard);
-  }
-}
+    disableAllBlocks();
+    doNotShowLastMove = 1;
 
-const aiWin = () =>{
-  if(blocks[0].className[6] && blocks[1].className[6] && blocks[2].className[6]){
-    displayResult('LOSS', 'red');
-    delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[3].className[6] && blocks[4].className[6] && blocks[5].className[6]){
-    displayResult('LOSS', 'red');
-    delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[6].className[6] && blocks[7].className[6] && blocks[8].className[6]){
-    displayResult('LOSS', 'red');
-     delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[0].className[6] && blocks[3].className[6] && blocks[6].className[6]){
-    displayResult('LOSS', 'red');
-    delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[1].className[6] && blocks[4].className[6] && blocks[7].className[6]){
-    displayResult('LOSS', 'red');
-    delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[2].className[6] && blocks[5].className[6] && blocks[8].className[6]){
-    displayResult('LOSS', 'red');
-    delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[0].className[6] && blocks[4].className[6] && blocks[8].className[6]){
-    displayResult('LOSS', 'red');
-    delayOnFading(clearBoard);
-    disableAllBlocks();
-  }
-  else if (blocks[6].className[6] && blocks[4].className[6] && blocks[2].className[6]){
-    displayResult('LOSS', 'red');
-      delayOnFading(clearBoard);
-    disableAllBlocks();
   }
 }
 
   blocks.forEach((block, index) =>{
     block.addEventListener('click', function(){
+
       randomTable.splice(randomTable.indexOf(index), 1);
       block.style.pointerEvents = "none";
       crosses[index].classList.add('show');
@@ -166,29 +184,29 @@ const aiWin = () =>{
 
       userWin();
      
-
-
-      if(i == 0 && index != 4){
+      if(i == 0 && index != 4 && Math.floor(Math.random() * 2) == 1){
         blocks[4].style.pointerEvents = "none";
         randomTable.splice(randomTable.indexOf(4), 1);
         circles[4].classList.add('show');
-      } else{
-        ai();
+        blocks[4].className += ' 2';
       }
-        
+      else{
+          if(doNotShowLastMove == 0){
+            ai();
+            }
+      }
       
-
+      userWin();
+      
       i++;
 
     })
   })
-
-
-
   
   clear.addEventListener('click', () =>{
     clearBoard();
     i=0;
+    doNotShowLastMove = 0;
   })
 
   
