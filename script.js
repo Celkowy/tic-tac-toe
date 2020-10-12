@@ -7,6 +7,7 @@ const showResult = document.querySelector('.show-result')
 let i = 0;
 let counter = 0;
 let doNotShowLastMove = 0;
+let x = 100;
 
 const randomNumber = () =>{
   return randomTable[Math.random() * randomTable.length | 0];
@@ -15,7 +16,7 @@ const randomNumber = () =>{
 const delayOnFading = (callback) =>{
   setTimeout(() =>{
     callback();
-  } , 1500)
+  } , 2250)
 }
 
 const ai = () =>{
@@ -48,11 +49,12 @@ crosses.forEach(cross =>{
   cross.className = "fas fa-times cross";
 })
 
-delayOnFading(displayResult);
+displayResult();
 
 counter = 0;
 i = 0;
 doNotShowLastMove = 0;
+x = 100;
 }
 
 const disableAllBlocks = () =>{
@@ -61,111 +63,149 @@ const disableAllBlocks = () =>{
   })
 }
 
+const hightlightResults = (element1, element2, element3, passTheClass) =>{
+  element1.classList.add(passTheClass);
+
+  setTimeout(() =>{
+    element2.classList.add(passTheClass);
+  }, 300)
+  
+  setTimeout(() =>{
+  element3.classList.add(passTheClass);
+  }, 600)
+}
+
 const userWin = () =>{
   if(blocks[0].className[6] == 1 && blocks[1].className[6] == 1 && blocks[2].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[0], blocks[1], blocks[2], 'green');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[3].className[6] == 1 && blocks[4].className[6] == 1 && blocks[5].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[3], blocks[4], blocks[5], 'green');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[6].className[6] == 1 && blocks[7].className[6] == 1 && blocks[8].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[6], blocks[7], blocks[8], 'green');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[0].className[6] == 1 && blocks[3].className[6] == 1 && blocks[6].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[0], blocks[3], blocks[6], 'green');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[1].className[6] == 1 && blocks[4].className[6] == 1 && blocks[7].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[1], blocks[4], blocks[7], 'green');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[2].className[6] == 1 && blocks[5].className[6] == 1 && blocks[8].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[2], blocks[5], blocks[8], 'green');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[0].className[6] == 1 && blocks[4].className[6] == 1 && blocks[8].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[0], blocks[4], blocks[8], 'green');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[6].className[6] == 1 && blocks[4].className[6] == 1 && blocks[2].className[6] == 1){
     displayResult('WIN', 'lightgreen');
+    hightlightResults(blocks[6], blocks[4], blocks[2], 'green');
       delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if(blocks[0].className[6] == 2 && blocks[1].className[6] == 2 && blocks[2].className[6] == 2){
-    displayResult('WIN', 'lightgreen');
+    displayResult('LOSS', 'red');
+    hightlightResults(blocks[0], blocks[1], blocks[2], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[0].className[6] == 2 && blocks[3].className[6] == 2 && blocks[6].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[0], blocks[3], blocks[6], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[3].className[6] == 2 && blocks[4].className[6] == 2 && blocks[5].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[3], blocks[4], blocks[5], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[6].className[6] == 2 && blocks[7].className[6] == 2 && blocks[8].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[6], blocks[7], blocks[8], 'red');
      delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[0].className[6] == 2 && blocks[3].className[6] == 2 && blocks[6].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[0], blocks[3], blocks[6], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[1].className[6] == 2 && blocks[4].className[6] == 2 && blocks[7].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[1], blocks[4], blocks[7], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[2].className[6] == 2 && blocks[5].className[6] == 2 && blocks[8].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[2], blocks[5], blocks[8], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[0].className[6] == 2 && blocks[4].className[6] == 2 && blocks[8].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[0], blocks[4], blocks[8], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (blocks[6].className[6] == 2 && blocks[4].className[6] == 2 && blocks[2].className[6] == 2){
     displayResult('LOSS', 'red');
+    hightlightResults(blocks[6], blocks[4], blocks[2], 'red');
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
   }
   else if (counter == 5){
-    displayResult('DRAW', '#666');
+
+    displayResult('DRAW', 'gray');
+
+    blocks.forEach(element =>{
+      setTimeout(() =>{
+        element.classList.add('gray');
+      }, x)
+      x+=75;
+    })
+
     delayOnFading(clearBoard);
     disableAllBlocks();
     doNotShowLastMove = 1;
@@ -195,7 +235,7 @@ const userWin = () =>{
             ai();
             }
       }
-      
+
       userWin();
       
       i++;
@@ -205,8 +245,7 @@ const userWin = () =>{
   
   clear.addEventListener('click', () =>{
     clearBoard();
-    i=0;
+    i = 0;
     doNotShowLastMove = 0;
+    x = 100;
   })
-
-  

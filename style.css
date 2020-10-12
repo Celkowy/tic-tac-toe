@@ -45,6 +45,18 @@ body {
   cursor: pointer;
 }
 
+.block.green {
+  background-color: green;
+}
+
+.block.red {
+  background-color: red;
+}
+
+.block.gray {
+  background-color: gray;
+}
+
 i.circle,
 i.cross {
   position: absolute;
